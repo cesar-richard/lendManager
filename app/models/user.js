@@ -1,41 +1,23 @@
 const Sequelize = require('sequelize');
 
 exports.getModel = db => {
-  return db.define(
+  const user = db.define(
     'user',
     {
-      id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true
-      },
-      username: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true
-      },
-      firstName: {
-        type: Sequelize.STRING
-      },
-      lastName: {
-        type: Sequelize.STRING
-      },
-      mail: {
-        type: Sequelize.STRING,
-        unique: true
-      },
-      type: {
-        type: Sequelize.STRING
-      },
-      password: {
-        type: Sequelize.STRING
-      }
+      first_name: Sequelize.STRING,
+      last_name: Sequelize.STRING,
+      username: Sequelize.STRING,
+      mail: Sequelize.STRING,
+      type: Sequelize.STRING,
+      active: Sequelize.BOOLEAN
     },
     {
-      freezeTableName: true,
-      paranoid: true,
-      underscored: true
+      classMethods: {
+        associate(models) {
+          user.hasMany(models.membeship);
+        }
+      }
     }
   );
+  return user;
 };

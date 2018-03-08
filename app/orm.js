@@ -15,5 +15,8 @@ exports.init = () => {
   });
   models.define(db);
   exports.models = db.models;
+  db.sync({
+    force: true
+  });
   return config.isTesting ? Promise.resolve() : db.sync();
 };
