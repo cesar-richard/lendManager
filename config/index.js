@@ -27,6 +27,7 @@ const assignObject = (target, source) => {
 
 const config = {
   common: {
+    port: 80,
     database: {
       url: process.env.NODE_API_DB_URL,
       host: process.env.NODE_API_DB_HOST,
@@ -49,7 +50,7 @@ const config = {
     },
     cas: {
       cas_url: 'https://cas.utc.fr/cas/',
-      service_url: 'http://37.187.114.131:8080',
+      service_url: 'http://lend.crichard.fr',
       cas_version: '2.0',
       session_info: 'cas_infos'
     }

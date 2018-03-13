@@ -8,12 +8,12 @@ exports.init = app => {
   // Users
   app.post('/users/sessions', [], users.login);
   app.get('/users/me', [authcas.bounce], users.loggedUser);
-  app.put('/users', [auth.secure], users.update);
+  app.put('/users', [authcas.bounce], users.update);
   app.post('/users', [], users.create);
   app.get('/logout', [authcas.logout], users.login);
 
   // Test
-  app.get('/test', authcas.bounce, books.getAll);
+  app.get('/test', [authcas.bounce], users.getAll);
 
   // Books
   app.get('/books', [], books.getAll);

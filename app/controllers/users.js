@@ -32,6 +32,16 @@ exports.login = (req, res, next) => {
   });
 };
 
+exports.getAll = (req, res, next) => {
+  userService
+    .getAll()
+    .then(users => {
+      res.status(200);
+      res.send({ users });
+    })
+    .catch(next);
+};
+
 exports.update = (req, res, next) => {
   const update = req.body;
   const user = req.user;

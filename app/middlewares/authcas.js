@@ -5,7 +5,10 @@ const sessionManager = require('./../services/sessionManager'),
   cas = new CASAuthentication(config);
 
 exports.bounce = (req, res, next) => {
-  cas.bounce(req, res, next);
+  cas.bounce(req, res, function() {
+    console.log('bite');
+    next();
+  });
 };
 
 exports.block = (req, res, next) => {
