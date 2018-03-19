@@ -5,6 +5,7 @@ exports.getModel = db => {
     'association',
     {
       name: Sequelize.STRING,
+      login: Sequelize.STRING,
       active: Sequelize.BOOLEAN
     },
     {

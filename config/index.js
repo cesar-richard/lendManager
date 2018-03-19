@@ -49,7 +49,7 @@ const config = {
       environment: process.env.ROLLBAR_ENV
     },
     cas: {
-      cas_url: 'https://cas.utc.fr/cas/',
+      cas_url: 'https://cas.utc.fr/cas',
       service_url: 'http://lend.crichard.fr',
       cas_version: '2.0',
       session_info: 'cas_infos'

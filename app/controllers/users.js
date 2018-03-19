@@ -5,33 +5,6 @@ const bcrypt = require('bcrypt'),
   userService = require('../services/users'),
   errors = require('../errors');
 
-exports.login = (req, res, next) => {
-  const user = req.body
-    ? {
-        username: req.body.username,
-        password: req.body.password
-      }
-    : {};
-
-  userService.getByUsername(user.username).then(u => {
-    if (u) {
-      bcrypt.compare(user.password, u.password).then(isValid => {
-        if (isValid) {
-          const auth = sessionManager.encode({ username: u.username });
-
-          res.status(200);
-          res.set(sessionManager.HEADER_NAME, auth);
-          res.send(u);
-        } else {
-          next(errors.invalidUser);
-        }
-      });
-    } else {
-      next(errors.invalidUser);
-    }
-  });
-};
-
 exports.getAll = (req, res, next) => {
   userService
     .getAll()
