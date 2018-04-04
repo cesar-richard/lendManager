@@ -4,6 +4,7 @@ const chai = require('chai'),
   orm = require('./app'),
   should = chai.should();
 
+/*
 const successfulLogin = cb => {
   return chai
     .request(server)
@@ -48,3 +49,4 @@ describe('auth middleware', () => {
       .then(() => done());
   });
 });
+*/

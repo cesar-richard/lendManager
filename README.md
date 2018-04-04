@@ -1,1 +1,1 @@
-# lendManger
+# lendManger [![Build Status](https://travis-ci.org/cesar-richard/lendManager.svg?branch=master)](https://travis-ci.org/cesar-richard/lendManager)

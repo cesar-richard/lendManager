@@ -19,7 +19,12 @@ exports.getByLogin = (req, res, next) => {
   serviceAsso
     .getByLogin(req.params.loginAsso)
     .then(association => {
-      res.render('assoShow', { association });
+      if (association) {
+        res.render('assoShow', { association });
+      } else {
+        res.status(404);
+        res.send({ error: 'association not found' });
+      }
     })
     .catch(next);
 };

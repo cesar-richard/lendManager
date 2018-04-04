@@ -2,8 +2,21 @@ exports.execute = db => {
   const data = [];
 
   // Associations
-  data.push(db.models.association.create({ name: 'PicsArt', login: 'picsart', active: true }));
-  data.push(db.models.association.create({ name: 'SiMDE', login: 'simde', active: true }));
+  data.push(
+    db.models.association.create({ name: 'PicsArt', login: 'picsart', active: true }).then(asso => {
+      const categoryBoitiers = db.models.category.create({ name: 'Boitiers', associationId: asso.id });
+      const categoryObjectifs = db.models.category.create({ name: 'Objectifs', associationId: asso.id });
+    })
+  );
+  data.push(
+    db.models.association.create({ name: 'SiMDE', login: 'simde', active: true }).then(asso => {
+      const categoryPayutcphones = db.models.category.create({
+        name: 'Payutc Phones',
+        associationId: asso.id
+      });
+      const categoryRouters = db.models.category.create({ name: 'Routers', associationId: asso.id });
+    })
+  );
 
   // Users
   data.push(

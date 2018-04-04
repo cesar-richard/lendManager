@@ -24,7 +24,7 @@ html(lang="fr")
 							| Associations
 						.dropdown-menu(aria-labelledby="navbarDropdown")
 							each asso in associations
-								a.dropdown-item(href="/asso/"+asso.login)=asso.name
+								a.dropdown-item(href="/associations/"+asso.login)=asso.name
 							.dropdown-divider
 							a.dropdown-item(href="/admin") Gérer
 					if session.cas_user

@@ -22,7 +22,11 @@ exports.bounce = (req, res, next) => {
         if (user.type === 'admin') {
           next();
         } else {
-          request(`https://assos.utc.fr/asso/${req.params.loginAsso}/json`, function(error, response, body) {
+          request(`https://assos.utc.fr/associations/${req.params.loginAsso}/json`, function(
+            error,
+            response,
+            body
+          ) {
             const tmp = JSON.parse(body);
             if (tmp.error) {
               res.status(tmp.error.code);

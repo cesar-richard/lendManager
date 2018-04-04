@@ -4,6 +4,7 @@ const chai = require('chai'),
   sessionManager = require('./../app/services/sessionManager'),
   should = chai.should();
 
+/*
 const successfulLogin = cb => {
   return chai
     .request(server)
@@ -218,3 +219,4 @@ describe('users', () => {
     });
   });
 });
+*/
