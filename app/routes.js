@@ -8,6 +8,9 @@ const auth = require('./middlewares/auth'),
   unknownResource = require('./controllers/unknownResource');
 
 exports.init = app => {
+  // Home
+  app.get('/', [], home.home);
+
   // Users
   app.post('/users/sessions', [authcas.bounce], users.getAll);
   app.get('/users/me', [authcas.bounce], users.loggedUser);
@@ -15,11 +18,17 @@ exports.init = app => {
   app.post('/users', [authcas.bounce], users.create);
   app.get('/logout', [authcas.logout], users.getAll);
 
-  // Home
-  app.get('/', [], home.home);
+  // Articles
+  app.get('/articles/show/:idArticle', [], articles.getById);
+  app.get('/articles/all', [], articles.getAll);
+  app.get('/articles/delete/:idArticle', [], users.getAll);
+  app.get('/articles/edit/:idArticle', [], users.getAll);
+  app.get('/articles/return/:idArticle', [], users.getAll);
 
-  // Books
-  //app.get('/asso/all', [], associations.getAll);
-  app.get('/asso/:login', [], associations.getByLogin);
-  app.get('/books/:id', [authcas.bounce], books.getById);
+  // Associations
+  // app.get('/asso/all', [], associations.getAll);
+  app.get('/asso/:loginAsso', [], associations.getByLogin);
+  app.get('/association/:loginAsso/lend', [], associations.lend);
+  
+
 };

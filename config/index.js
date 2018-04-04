@@ -27,7 +27,7 @@ const assignObject = (target, source) => {
 
 const config = {
   common: {
-    port: 80,
+    port: 8080,
     database: {
       url: process.env.NODE_API_DB_URL,
       host: process.env.NODE_API_DB_HOST,

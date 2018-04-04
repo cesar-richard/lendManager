@@ -1,0 +1,60 @@
+extends layout.pug
+
+//- TODO: Wait for official Boostrap4 support in bootstrap-select and include CDN libs
+//- https://github.com/snapappointments/bootstrap-select/releases
+//- currently use pre-release 1.13.0-beta
+append scripts
+	script(src="/bootstrap-select/bootstrap-select.min.js")
+	script(src="/bootstrap-select/defaults-fr_FR.min.js")
+	script(src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/gijgo.min.js" type="text/javascript")
+	script(src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/messages/messages.fr-fr.js" type="text/javascript")
+	script.
+		$( document ).ready(function() {
+			$('#materiel').selectpicker();
+			var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+			$('#startDate').datepicker({
+				locale: 'fr-fr',
+				uiLibrary: 'bootstrap4',
+				weekStartDay: 1,
+				minDate: today,
+				maxDate: function () {
+					return $('#endDate').val();
+				}
+			});
+			$('#endDate').datepicker({
+				locale: 'fr-fr',
+				uiLibrary: 'bootstrap4',
+				weekStartDay: 1,
+				minDate: function () {
+					return $('#startDate').val();
+				}
+			});
+		});
+
+append stylesheets
+	link(rel="stylesheet" href="/bootstrap-select/bootstrap-select.min.css")
+	link(href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.min.css" rel="stylesheet" type="text/css")
+
+block content
+	h1 Prêt de matériel
+	form
+		.form-group
+			label(for='materiel') Matériel disponible 
+			select#materiel(multiple,data-live-search='true')
+				each category in association.categories
+					optgroup(label=category.name)
+						each article in category.articles
+							option(value=article.id)=article.brand+" "+article.model
+		.form-group
+			label(for='startDate') Date d'emprunt
+			input#startDate
+		.form-group
+			label(for='endDate') Date de retour
+			input#endDate
+		.form-group
+			label(for='lender') Emprunteur
+			input#lender.form-control(type="text" placeholder="Emprunteur")
+		.form-group
+			label(for='comment') Commentaires
+			textarea#comment.form-control(rows="2")
+		button.btn.btn-primary(type="submit") Envoyer

@@ -8,9 +8,11 @@ exports.create = asso => {
 };
 
 exports.getOne = asso => {
-  return orm.models.association.findOne({ where: asso }).catch(err => {
-    throw errors.databaseError(err.detail);
-  });
+  return orm.models.association
+    .findOne({ where: asso, include: [{ all: true, nested: true }] })
+    .catch(err => {
+      throw err;
+    });
 };
 
 exports.getByLogin = login => {

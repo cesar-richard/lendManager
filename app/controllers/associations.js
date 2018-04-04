@@ -2,11 +2,11 @@
 
 const bcrypt = require('bcrypt'),
   sessionManager = require('./../services/sessionManager'),
-  service = require('../services/associations'),
+  serviceAsso = require('../services/associations'),
   errors = require('../errors');
 
 exports.getAll = (req, res, next) => {
-  service
+  serviceAsso
     .getAll()
     .then(associations => {
       res.status(200);
@@ -16,11 +16,19 @@ exports.getAll = (req, res, next) => {
 };
 
 exports.getByLogin = (req, res, next) => {
-  service
-    .getByLogin(req.params.login)
+  serviceAsso
+    .getByLogin(req.params.loginAsso)
     .then(association => {
-      res.status(200);
-      res.send({ association });
+      res.render('assoShow', { association });
+    })
+    .catch(next);
+};
+
+exports.lend = (req, res, next) => {
+  serviceAsso
+    .getByLogin(req.params.loginAsso)
+    .then(association => {
+      res.render('lendForm',{association});
     })
     .catch(next);
 };

@@ -2,21 +2,36 @@
 
 module.exports = {
   up(queryInterface, Sequelize) {
-    return queryInterface.createTable('roles', {
+    return queryInterface.createTable('lend', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING
+      start: {
+        type: Sequelize.DATE
       },
-      canView: {
+      end: {
+        type: Sequelize.DATE
+      },
+      taken: {
         type: Sequelize.BOOLEAN
       },
-      canEdit: {
+      returned: {
         type: Sequelize.BOOLEAN
+      },
+      comment: {
+        type: Sequelize.TEXT
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
@@ -29,6 +44,6 @@ module.exports = {
     });
   },
   down(queryInterface, Sequelize) {
-    return queryInterface.dropTable('roles');
+    return queryInterface.dropTable('lend');
   }
 };

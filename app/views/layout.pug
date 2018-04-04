@@ -17,7 +17,7 @@ html(lang="fr")
 				ul.navbar-nav.mr-auto
 					li.nav-item.active
 						a.nav-link(href="/")
-							| Home 
+							| Accueil 
 							span.sr-only (current)
 					li.nav-item.dropdown
 						a#navbarDropdown.nav-link.dropdown-toggle(href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
@@ -27,8 +27,11 @@ html(lang="fr")
 								a.dropdown-item(href="/asso/"+asso.login)=asso.name
 							.dropdown-divider
 							a.dropdown-item(href="/admin") Gérer
-					li.nav-item
-						a.nav-link(href="/logout") Déconnexion
+					if session.cas_user
+						li.nav-item
+							a.nav-link(href="#")=session.cas_infos.displayname
+						li.nav-item
+							a.nav-link(href="/logout") Déconnexion
 		.container-fluid
 			block content
 		block scripts
