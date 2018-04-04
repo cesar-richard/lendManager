@@ -28,7 +28,7 @@ exports.lend = (req, res, next) => {
   serviceAsso
     .getByLogin(req.params.loginAsso)
     .then(association => {
-      res.render('lendForm',{association});
+      res.render('lendForm', { association });
     })
     .catch(next);
 };

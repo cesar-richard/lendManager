@@ -4,8 +4,8 @@ extends layout.pug
 //- https://github.com/snapappointments/bootstrap-select/releases
 //- currently use pre-release 1.13.0-beta
 append scripts
-	script(src="/bootstrap-select/bootstrap-select.min.js")
-	script(src="/bootstrap-select/defaults-fr_FR.min.js")
+	script(src="/libs/bootstrap-select/bootstrap-select.min.js")
+	script(src="/libs/bootstrap-select/defaults-fr_FR.min.js")
 	script(src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/gijgo.min.js" type="text/javascript")
 	script(src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/messages/messages.fr-fr.js" type="text/javascript")
 	script.
@@ -32,7 +32,7 @@ append scripts
 		});
 
 append stylesheets
-	link(rel="stylesheet" href="/bootstrap-select/bootstrap-select.min.css")
+	link(rel="stylesheet" href="/libs/bootstrap-select/bootstrap-select.min.css")
 	link(href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.min.css" rel="stylesheet" type="text/css")
 
 block content

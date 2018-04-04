@@ -29,6 +29,4 @@ exports.init = app => {
   // app.get('/asso/all', [], associations.getAll);
   app.get('/asso/:loginAsso', [], associations.getByLogin);
   app.get('/association/:loginAsso/lend', [], associations.lend);
-  
-
 };
