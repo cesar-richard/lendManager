@@ -18,6 +18,7 @@ services:
   - mysql
 
 before_script:
+  - cp ./migrations/config.js.travis ./migrations/config.js
   - mysql -e "CREATE DATABASE picsart;"
   - node_modules/.bin/sequelize --config ./migrations/config.js --migrations-path ./migrations/migrations db:migrate
 
