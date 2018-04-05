@@ -15,17 +15,16 @@ const db = new Sequelize(orm.DB_URL, { logging: false });
 
 beforeEach('drop tables, re-create them and populate sample data', done => {
   models.define(db);
-  db.query('SET FOREIGN_KEY_CHECKS = 0;', { raw: true }).then(function(results) {
-    db.drop().then(() => {
-      db
-        .sync({ force: true })
-        .then(() => dataCreation.execute(db))
-        .then(() => {
-          exports.models = db.models;
-          done();
-        });
+  db
+    .query('SET FOREIGN_KEY_CHECKS = 0', { raw: true })
+    .then(db.drop())
+    .then(() => db.sync({ force: true }))
+    .then(() => dataCreation.execute(db))
+    .then(() => db.query('SET FOREIGN_KEY_CHECKS = 1', { raw: true }))
+    .then(() => {
+      exports.models = db.models;
+      done();
     });
-  });
 });
 
 // including all test files
