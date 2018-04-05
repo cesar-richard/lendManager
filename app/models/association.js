@@ -7,7 +7,6 @@ exports.getModel = db => {
     active: Sequelize.BOOLEAN
   });
   association.associate = function(models) {
-    association.hasMany(models.membership);
     association.hasMany(models.category);
   };
   return association;

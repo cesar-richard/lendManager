@@ -26,7 +26,7 @@ exports.init = app => {
   // API
   // Associations
   app.get('/api/associations/', [], associations.getAll);
-  app.get('/api/associations/:loginAsso', [], associations.getAll);
+  app.get('/api/associations/:loginAsso', [], associations.getApiByLogin);
   app.get('/api/associations/:loginAsso/lendings', [], associations.getAll);
 
   // Articles

@@ -9,7 +9,7 @@ describe('associations', () => {
       it('should return all associations', done => {
         chai
           .request(server)
-          .get('/api/associations?limit=2')
+          .get('/api/associations')
           .then(res => {
             res.should.have.status(200);
             res.should.be.json;
@@ -31,11 +31,11 @@ describe('associations', () => {
           .then(res => {
             res.should.have.status(200);
             res.should.be.json;
-            res.body.associations.should.be.a('array');
-            res.body.associations[0].should.have.property('id');
-            res.body.associations[0].should.have.property('name').should.not.be.null;
-            res.body.associations[0].should.have.property('login').should.not.be.null;
-            res.body.associations[0].should.have.property('active').should.not.be.null;
+            res.body.should.have.property('association');
+            res.body.association.should.have.property('id');
+            res.body.association.should.have.property('name').should.not.be.null;
+            res.body.association.should.have.property('login').should.not.be.null;
+            res.body.association.should.have.property('active').should.not.be.null;
             dictum.chai(res);
           })
           .then(() => done());

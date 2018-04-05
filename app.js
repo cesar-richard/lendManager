@@ -39,23 +39,6 @@ const init = () => {
     })
   );
 
-  const compassConfig = {
-    models: [
-      {
-        modelName: 'associations',
-        attributes: ['id', 'name', 'login', 'active'],
-        pKey: ['id'],
-        associations: [
-          {
-            type: 'hasMany',
-            model: 'Category',
-            attributes: ['id', 'name']
-          }
-        ]
-      }
-    ]
-  };
-
   app.locals.title = 'Lend Manager';
 
   app.use('/docs', express.static(path.join(__dirname, 'docs')));

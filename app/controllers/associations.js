@@ -29,6 +29,21 @@ exports.getByLogin = (req, res, next) => {
     .catch(next);
 };
 
+exports.getApiByLogin = (req, res, next) => {
+  serviceAsso
+    .getByLogin(req.params.loginAsso)
+    .then(association => {
+      if (association) {
+        res.status(200);
+        res.send({ association });
+      } else {
+        res.status(404);
+        res.send({ error: 'association not found' });
+      }
+    })
+    .catch(next);
+};
+
 exports.lend = (req, res, next) => {
   serviceAsso
     .getByLogin(req.params.loginAsso)

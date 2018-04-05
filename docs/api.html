@@ -1,39 +1,47 @@
-<html><head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /><script src="https://code.jquery.com/jquery-1.12.2.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script><style> pre { width: 95%; } </style></head><body><div class="container"><div class="jumbotron"><h1>Api</h1></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-api-associations-GET"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-api-associations-GET" href="#collapse-api-associations-GET">GET /api/associations?limit=2</a></h4></div><div id="collapse-api-associations-GET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-api-associations-GET"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{}</pre><h5>Body</h5><pre>{
+<html><head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /><script src="https://code.jquery.com/jquery-1.12.2.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script><style> pre { width: 95%; } </style></head><body><div class="container"><div class="jumbotron"><h1>Api</h1></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-api-associations-GET"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-api-associations-GET" href="#collapse-api-associations-GET">GET /api/associations</a></h4></div><div id="collapse-api-associations-GET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-api-associations-GET"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{}</pre><h5>Body</h5><pre>{
   "associations": [
     {
       "id": 1,
       "name": "PicsArt",
       "login": "picsart",
       "active": true,
-      "createdAt": "2018-04-04T16:00:35.000Z",
-      "updatedAt": "2018-04-04T16:00:35.000Z"
+      "createdAt": "2018-04-05T08:33:04.000Z",
+      "updatedAt": "2018-04-05T08:33:04.000Z"
     },
     {
       "id": 2,
       "name": "SiMDE",
       "login": "simde",
       "active": true,
-      "createdAt": "2018-04-04T16:00:35.000Z",
-      "updatedAt": "2018-04-04T16:00:35.000Z"
+      "createdAt": "2018-04-05T08:33:04.000Z",
+      "updatedAt": "2018-04-05T08:33:04.000Z"
     }
   ]
 }</pre></div></div></div></div><div class="panel panel-default"><div class="panel-heading" role="tab" id="heading-api-associations-picsart-GET"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapse-api-associations-picsart-GET" href="#collapse-api-associations-picsart-GET">GET /api/associations/picsart</a></h4></div><div id="collapse-api-associations-picsart-GET" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-api-associations-picsart-GET"><div class="panel-body"><h4>Request Data</h4><div class="container"><h5>Headers</h5><pre>{}</pre></div></div><div class="panel-body"><h4>Response Data</h4><div class="container"><h5>Status: 200</h5><h5>Headers</h5><pre>{}</pre><h5>Body</h5><pre>{
-  "associations": [
-    {
-      "id": 1,
-      "name": "PicsArt",
-      "login": "picsart",
-      "active": true,
-      "createdAt": "2018-04-04T16:00:36.000Z",
-      "updatedAt": "2018-04-04T16:00:36.000Z"
-    },
-    {
-      "id": 2,
-      "name": "SiMDE",
-      "login": "simde",
-      "active": true,
-      "createdAt": "2018-04-04T16:00:36.000Z",
-      "updatedAt": "2018-04-04T16:00:36.000Z"
-    }
-  ]
+  "association": {
+    "id": 1,
+    "name": "PicsArt",
+    "login": "picsart",
+    "active": true,
+    "createdAt": "2018-04-05T08:33:05.000Z",
+    "updatedAt": "2018-04-05T08:33:05.000Z",
+    "categories": [
+      {
+        "id": 1,
+        "name": "Boitiers",
+        "createdAt": "2018-04-05T08:33:05.000Z",
+        "updatedAt": "2018-04-05T08:33:05.000Z",
+        "associationId": 1,
+        "articles": []
+      },
+      {
+        "id": 2,
+        "name": "Objectifs",
+        "createdAt": "2018-04-05T08:33:05.000Z",
+        "updatedAt": "2018-04-05T08:33:05.000Z",
+        "associationId": 1,
+        "articles": []
+      }
+    ]
+  }
 }</pre></div></div></div></div></div></body></html>
