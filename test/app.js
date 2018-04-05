@@ -16,7 +16,7 @@ const db = new Sequelize(orm.DB_URL, { logging: false });
 beforeEach('drop tables, re-create them and populate sample data', done => {
   models.define(db);
   db.query('SET FOREIGN_KEY_CHECKS = 0;', { raw: true }).then(function(results) {
-    db.dropAllSchemas().then(() => {
+    db.drop().then(() => {
       db
         .sync({ force: true })
         .then(() => dataCreation.execute(db))
