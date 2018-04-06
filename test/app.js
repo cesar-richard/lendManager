@@ -11,9 +11,9 @@ const fs = require('fs'),
 
 chai.use(chaiHttp);
 
-const db = new Sequelize(orm.DB_URL, { logging: false });
+const db = new Sequelize(orm.DB_URL, { logging: true });
 
-before('drop tables, re-create them and populate sample data', done => {
+beforeEach('drop tables, re-create them and populate sample data', done => {
   models.define(db);
   db
     .query('SET FOREIGN_KEY_CHECKS = 0;', { raw: true })
@@ -28,6 +28,8 @@ before('drop tables, re-create them and populate sample data', done => {
 });
 
 const normalizedPath = path.join(__dirname, '.');
+const data = [];
 fs.readdirSync(normalizedPath).forEach(file => {
-  require(`./${file}`);
+  data.push(new Promise(() => require(`./${file}`)));
 });
+Promise.all(data);
