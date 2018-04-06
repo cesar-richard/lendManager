@@ -23,7 +23,7 @@
     "migrations": "./node_modules/.bin/sequelize --config ./migrations/config.js --migrations-path ./migrations/migrations db:migrate",
     "start": "./node_modules/.bin/nodemon --inspect=37.187.114.131:9229 app.js",
     "test": "NODE_ENV=testing ./node_modules/mocha/bin/mocha --compilers js:babel-core/register test/app.js && npm run nsp",
-    "test-inspect": "NODE_ENV=testing node --inspect=37.187.114.131:9229 --debug-brk ./node_modules/mocha/bin/_mocha --compilers js:babel-core/register test/app.js"
+    "test-inspect": "NODE_ENV=testing node --inspect=37.187.114.131:9229 --inspect-brk ./node_modules/mocha/bin/_mocha --compilers js:babel-core/register test/app.js"
   },
   "cacheDirectories": [
     "node_modules"
