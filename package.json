@@ -8,7 +8,7 @@
   },
   "scripts": {
     "console": "node console.js",
-    "cover": "NODE_ENV=testing istanbul cover ./node_modules/mocha/bin/_mocha --compilers js:babel-core/register test/app.js",
+    "cover": "NODE_ENV=testing istanbul cover ./node_modules/mocha/bin/_mocha -- --compilers js:babel-core/register test/app.js",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "nsp": "./node_modules/.bin/nsp check",
@@ -44,7 +44,6 @@
     "bcrypt": "^1.0.1",
     "body-parser": "^1.14.2",
     "cas-authentication": "0.0.8",
-    "chai-dom": "^1.7.0",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "jwt-simple": "^0.5.1",
