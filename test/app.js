@@ -11,7 +11,7 @@ const fs = require('fs'),
 
 chai.use(chaiHttp);
 
-const db = new Sequelize(orm.DB_URL, { logging: true });
+const db = new Sequelize(orm.DB_URL, { logging: false });
 
 before('drop tables, re-create them and populate sample data', done => {
   models.define(db);
@@ -24,8 +24,7 @@ before('drop tables, re-create them and populate sample data', done => {
     .then(() => {
       exports.models = db.models;
       done();
-    })
-    .catch(err => console.log(err));
+    });
 });
 
 const normalizedPath = path.join(__dirname, '.');
