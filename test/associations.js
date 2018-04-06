@@ -3,7 +3,7 @@ const chai = require('chai'),
   server = require('./../app'),
   should = chai.should();
 
-describe('associations', () => {
+describe('Associations', () => {
   describe('API', () => {
     describe('/api/associations GET', () => {
       it('should return all associations', done => {
@@ -36,6 +36,17 @@ describe('associations', () => {
             res.body.association.should.have.property('name').should.not.be.null;
             res.body.association.should.have.property('login').should.not.be.null;
             res.body.association.should.have.property('active').should.not.be.null;
+            res.body.association.categories.should.be.a('array');
+            res.body.association.categories[0].should.have.property('id').should.not.be.null;
+            res.body.association.categories[0].should.have.property('name').should.not.be.null;
+            res.body.association.categories[0].articles.should.be.a('array');
+            res.body.association.categories[0].articles[0].should.have.property('id').should.not.be.null;
+            res.body.association.categories[0].articles[0].should.have.property('model').should.not.be.null;
+            res.body.association.categories[0].articles[0].should.have.property('brand').should.not.be.null;
+            res.body.association.categories[0].articles[0].should.have.property('comment');
+            res.body.association.categories[0].articles[0].should.have.property('price').should.not.be.null;
+            res.body.association.categories[0].articles[0].should.have.property('active').should.not.be.null;
+            res.body.association.categories[0].articles[0].lends.should.be.a('array');
             dictum.chai(res);
           })
           .then(() => done());

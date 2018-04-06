@@ -4,14 +4,16 @@ const fs = require('fs'),
   path = require('path'),
   chai = require('chai'),
   chaiHttp = require('chai-http'),
+  chaiDom = require('chai-dom'),
   Sequelize = require('sequelize'),
   models = require('../app/models'),
-  orm = require('./../app/orm'),
-  dataCreation = require('./../app/models/scripts/dataCreation');
+  orm = require('../app/orm'),
+  dataCreation = require('../app/models/scripts/dataCreation');
 
 chai.use(chaiHttp);
+chai.use(chaiDom);
 
-const db = new Sequelize(orm.DB_URL, { logging: true });
+const db = new Sequelize(orm.DB_URL, { logging: false });
 
 before('drop tables, re-create them and populate sample data', done => {
   models.define(db);
