@@ -9,7 +9,8 @@ const auth = require('./middlewares/auth'),
 
 exports.init = app => {
   // Home
-  app.get('/', [], home.home);
+  app.get('/', [authcas.auth], home.home);
+  app.post('/', [authcas.auth], home.home);
 
   // Users
   app.post('/users/sessions', [authcas.bounce], users.getAll);
