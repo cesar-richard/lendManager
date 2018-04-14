@@ -15,6 +15,9 @@ module.exports = {
       brand: {
         type: Sequelize.STRING
       },
+      serial: {
+        type: Sequelize.STRING
+      },
       comment: {
         type: Sequelize.TEXT
       },

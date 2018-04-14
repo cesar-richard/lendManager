@@ -3,6 +3,16 @@ const chai = require('chai'),
   server = require('./../app'),
   sessionManager = require('./../app/services/sessionManager'),
   should = chai.should();
+/*
+res.headers.body.should.be.json;
+res.body.should.have.property('cas_user');
+res.body.cas_user.should.not.be.null;
+res.body.cas_infos.should.be.json;
+res.body.cas_infos.should.have.property('displayname');
+res.body.cas_infos.should.have.property('mail');
+res.body.cas_infos.should.have.property('givenName');
+res.body.cas_infos.should.have.property('sn');
+*/
 
 /*
 const successfulLogin = cb => {

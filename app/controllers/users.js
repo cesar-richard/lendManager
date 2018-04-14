@@ -75,7 +75,22 @@ exports.logout = (req, res, next) => {
   res.end();
 };
 
+exports.login = (req, res, next) => {
+  res.render('loginForm');
+};
+
 exports.loggedUser = (req, res, next) => {
-  res.status(200);
-  res.send(req.session);
+  if (req.session.cas_user) {
+    res.status(200);
+    const user = {
+      firstName: req.session.cas_infos.givenName,
+      lastName: req.session.cas_infos.sn,
+      username: req.session.cas_user,
+      email: req.session.cas_infos.mail
+    };
+    res.send(user);
+  } else {
+    res.status(401);
+    res.send({ error: 'Not logged in' });
+  }
 };

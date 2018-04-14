@@ -4,6 +4,7 @@ exports.getModel = db => {
   const article = db.define('article', {
     model: Sequelize.STRING,
     brand: Sequelize.STRING,
+    serial: Sequelize.STRING,
     comment: Sequelize.TEXT,
     price: Sequelize.INTEGER,
     active: Sequelize.BOOLEAN
@@ -11,7 +12,7 @@ exports.getModel = db => {
 
   article.associate = function(models) {
     article.belongsTo(models.category);
-    article.hasMany(models.lend);
+    article.belongsToMany(models.lend, { through: 'lendArticles' });
   };
 
   return article;

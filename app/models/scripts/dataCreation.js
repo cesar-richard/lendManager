@@ -1,6 +1,27 @@
 exports.execute = db => {
   const data = [];
   data.push(
+    db.models.user
+      .create({
+        first_name: 'd_Cesar',
+        last_name: 'd_Richard',
+        username: 'cerichar',
+        mail: 'email1@gmail.com',
+        type: 'test',
+        active: true
+      })
+      .then(() => {
+        db.models.user.create({
+          first_name: 'd_Celine',
+          last_name: 'd_Boucher',
+          username: 'cboucher',
+          mail: 'email2@gmail.com',
+          type: 'test',
+          active: true
+        });
+      })
+  );
+  data.push(
     db.models.association
       .create({
         name: 'PicsArt',
@@ -47,14 +68,43 @@ exports.execute = db => {
                     active: true,
                     categoryId: category.id
                   })
+                  .then(article => {
+                    db.models.lend
+                      .create({
+                        start: new Date(),
+                        end: new Date(),
+                        taken: true,
+                        returned: false,
+                        comment: 'Test Value',
+                        userId: 1
+                      })
+                      .then(lend => {
+                        lend.addArticles([article]);
+                      });
+                  })
                   .then(() => {
-                    db.models.article.create({
-                      brand: 'Tokina',
-                      model: '18mm f5.6',
-                      price: 80,
-                      active: true,
-                      categoryId: category.id
-                    });
+                    db.models.article
+                      .create({
+                        brand: 'Tokina',
+                        model: '18mm f5.6',
+                        price: 80,
+                        active: true,
+                        categoryId: category.id
+                      })
+                      .then(article => {
+                        db.models.lend
+                          .create({
+                            start: new Date(),
+                            end: new Date(),
+                            taken: true,
+                            returned: false,
+                            comment: 'Test Value',
+                            userId: 2
+                          })
+                          .then(lend => {
+                            lend.addArticles([article]);
+                          });
+                      });
                   });
               });
           });
@@ -101,14 +151,43 @@ exports.execute = db => {
                     active: true,
                     categoryId: category.id
                   })
+                  .then(article => {
+                    db.models.lend
+                      .create({
+                        start: new Date(),
+                        end: new Date(),
+                        taken: true,
+                        returned: false,
+                        comment: 'Test Value',
+                        userId: 2
+                      })
+                      .then(lend => {
+                        lend.addArticles([article]);
+                      });
+                  })
                   .then(() => {
-                    db.models.article.create({
-                      brand: 'Payutc Phone',
-                      model: 'BDE 4',
-                      price: 200,
-                      active: true,
-                      categoryId: category.id
-                    });
+                    db.models.article
+                      .create({
+                        brand: 'Payutc Phone',
+                        model: 'BDE 4',
+                        price: 200,
+                        active: true,
+                        categoryId: category.id
+                      })
+                      .then(article => {
+                        db.models.lend
+                          .create({
+                            start: new Date(),
+                            end: new Date(),
+                            taken: true,
+                            returned: false,
+                            comment: 'Test Value',
+                            userId: 1
+                          })
+                          .then(lend => {
+                            lend.addArticles([article]);
+                          });
+                      });
                   });
               });
           })
@@ -127,35 +206,46 @@ exports.execute = db => {
                     active: true,
                     categoryId: category.id
                   })
+                  .then(article => {
+                    db.models.lend
+                      .create({
+                        start: new Date(),
+                        end: new Date(),
+                        taken: true,
+                        returned: false,
+                        comment: 'Test Value',
+                        userId: 1
+                      })
+                      .then(lend => {
+                        lend.addArticles([article]);
+                      });
+                  })
                   .then(() =>
-                    db.models.article.create({
-                      brand: 'Netgear',
-                      model: 'Switch 24 ports',
-                      price: 200,
-                      active: true,
-                      categoryId: category.id
-                    })
+                    db.models.article
+                      .create({
+                        brand: 'Netgear',
+                        model: 'Switch 24 ports',
+                        price: 200,
+                        active: true,
+                        categoryId: category.id
+                      })
+                      .then(article => {
+                        db.models.lend
+                          .create({
+                            start: new Date(),
+                            end: new Date(),
+                            taken: true,
+                            returned: false,
+                            comment: 'Test Value',
+                            userId: 2
+                          })
+                          .then(lend => {
+                            lend.addArticles([article]);
+                          });
+                      })
                   );
               });
           });
-      })
-  );
-
-  data.push(
-    db.models.user
-      .create({
-        first_name: 'd_Cesar',
-        last_name: 'd_Richard',
-        username: 'cerichar',
-        mail: 'email1@gmail.com'
-      })
-      .then(() => {
-        db.models.user.create({
-          first_name: 'd_Celine',
-          last_name: 'd_Boucher',
-          username: 'cboucher',
-          mail: 'email2@gmail.com'
-        });
       })
   );
   return Promise.all(data);

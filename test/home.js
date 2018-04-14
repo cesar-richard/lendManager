@@ -15,7 +15,24 @@ describe('Home', () => {
             res.should.be.html;
             dictum.chai(res);
           })
-          .then(() => done());
+          .then(() => done())
+          .catch(err => {
+            done(new Error(err));
+          });
+      });
+      it('should be logged in', done => {
+        chai
+          .request(server)
+          .get('/')
+          .then(res => {
+            res.should.have.status(200);
+            res.should.be.html;
+            dictum.chai(res);
+          })
+          .then(() => done())
+          .catch(err => {
+            done(new Error(err));
+          });
       });
     });
   });
