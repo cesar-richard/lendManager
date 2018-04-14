@@ -1,8 +1,8 @@
 const sessionManager = require('./../services/sessionManager'),
   orm = require('./../orm'),
   CASAuthentication = require('cas-authentication'),
-  config = require('../../config').common.cas,
-  cas = new CASAuthentication(config),
+  config = require('../../config'),
+  cas = new CASAuthentication(config.common.cas),
   request = require('request'),
   parser = require('xml2json');
 
@@ -10,47 +10,55 @@ exports.auth = (req, res, next) => {
   if (req.session.cas_user) {
     next();
   } else {
-    if (req.body.login && req.body.password) {
-      const casParams = {
-        service: 'http://lend.crichard.fr/',
-        username: req.body.login,
-        password: req.body.password
-      };
-      const options = {
-        method: 'POST',
-        url: `${config.cas_url}/v1/tickets/`,
-        headers: {
-          'Cache-Control': 'no-cache',
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        form: casParams
-      };
+    if (config.isTesting) {
+      req.session.cas_user = config.common.cas.debug_user;
+      req.session.cas_infos = config.common.cas.debug_infos;
+      next();
+    } else {
+      if (req.body.login && req.body.password) {
+        const casParams = {
+          service: 'http://lend.crichard.fr/',
+          username: req.body.login,
+          password: req.body.password
+        };
+        const options = {
+          method: 'POST',
+          url: `${config.common.cas.cas_url}/v1/tickets/`,
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          form: casParams
+        };
 
-      request(options, function(error, response, body) {
-        if (error) throw new Error(error);
+        request(options, function(error, response, body) {
+          if (error) throw new Error(error);
 
-        if (response.statusCode !== 201) {
-          res.send(req.session.cas_infos);
-        } else {
-          options.url += response.headers.location.substr(this.href.lastIndexOf('/') + 2);
-          // eslint-disable-next-line no-shadow
-          request(options, function(error, response, body) {
-            options.url = `${config.cas_url}/p3/serviceValidate?service=${casParams.service}&ticket=${body}`;
-            options.form = null;
-            options.method = 'GET';
+          if (response.statusCode !== 201) {
+            res.send(req.session.cas_infos);
+          } else {
+            options.url += response.headers.location.substr(this.href.lastIndexOf('/') + 2);
             // eslint-disable-next-line no-shadow
             request(options, function(error, response, body) {
-              const casinfos = parser.toJson(body.replace(/cas\:/g, ''), { object: true }).serviceResponse
-                .authenticationSuccess;
-              req.session.cas_user = casinfos.user;
-              req.session.cas_infos = casinfos.attributes;
-              next();
+              options.url = `${config.common.cas.cas_url}/p3/serviceValidate?service=${
+                casParams.service
+              }&ticket=${body}`;
+              options.form = null;
+              options.method = 'GET';
+              // eslint-disable-next-line no-shadow
+              request(options, function(error, response, body) {
+                const casinfos = parser.toJson(body.replace(/cas\:/g, ''), { object: true }).serviceResponse
+                  .authenticationSuccess;
+                req.session.cas_user = casinfos.user;
+                req.session.cas_infos = casinfos.attributes;
+                next();
+              });
             });
-          });
-        }
-      });
-    } else {
-      res.redirect('/login');
+          }
+        });
+      } else {
+        res.redirect('/login');
+      }
     }
   }
 };
